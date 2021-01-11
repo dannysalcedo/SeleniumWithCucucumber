@@ -1,12 +1,11 @@
 pipeline {
   agent any
   stages {
-    stage('Build-Test') {
-      parallel {
+
 
       stage('checkuot') {
           steps {
-            echo 'Cheking from GitHub'
+            echo 'Checking from GitHub'
              git 'https://github.com/dannysalcedo/SeleniumWithCucucumber.git'
           }     
       }
@@ -24,20 +23,19 @@ pipeline {
             sh(script: 'mvn verify', label: 'maven Test')
           }
       }
-      stage('Cucumber') {
+      parallel {
+      stage('Cucumber Report and Email') {
           steps {
             cucumber failedFeaturesNumber: -1, failedScenariosNumber: -1, failedStepsNumber: -1, fileIncludePattern: '**/*.json', pendingStepsNumber: -1, skippedStepsNumber: -1, sortingMethod: 'ALPHABETICAL', undefinedStepsNumber: -1
           }
-      }
-      stage('Email Notification') {
-        steps {
-          emailext body: '''Build Execution Complete With 
+          steps {
+           emailext body: '''Build Execution Complete With 
                           Ckeckout+ Compile + Package + Reporting''', subject: 'Build and Execution Completed', to: 'DevOps@Automation.com'
         }
       }
     }
   }
 }
-}
+
 
 
