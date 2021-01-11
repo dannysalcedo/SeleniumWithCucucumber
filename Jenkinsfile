@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('Build and Test') {
+    stage('Build-Test') {
       parallel {
 
       stage('checkuot') {
