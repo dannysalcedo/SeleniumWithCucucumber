@@ -7,14 +7,14 @@ pipeline {
              git 'https://github.com/dannysalcedo/SeleniumWithCucucumber.git'
           }     
       }
-      stage('Build and Test') {
-        parallel{
-          stage('Clean') {
+      stage('Clean') {
             steps {
               echo 'Clean Previous Build Project'
               sh(script: 'mvn clean', label: 'maven Clean')
             }
           }
+      stage('Build and Test') {
+        parallel{
             stage('Build') {
               steps {
               echo 'Compiling Project'
