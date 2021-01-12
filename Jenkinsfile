@@ -15,12 +15,12 @@ pipeline {
               sh(script: 'mvn clean', label: 'maven Clean')
             }
           }
-          stage('Build') {
-            steps {
+            stage('Build') {
+              steps {
               echo 'Compiling Project'
               sh(script: 'mvn compile', label: 'maven Compile')
             }
-          }
+            }
           stage('Test') {
             steps {
               echo 'Testing Project'
