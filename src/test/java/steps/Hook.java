@@ -37,7 +37,6 @@ public class Hook extends BaseUtil {
 
         // Chrome driver configuration for MacOS
         // System.setProperty("webdriver.chrome.driver",
-        // "c://usr/local/bin/chromedriver");
         System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
         base.Driver = new ChromeDriver();
     }
